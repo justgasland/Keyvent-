@@ -6,3 +6,6 @@ venv/
 env/
 .gitignore
 .idea/
+
+db.sqlite
+.db
