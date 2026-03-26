@@ -13,6 +13,6 @@ class Event(Base):
     location    = Column(String(255), nullable=True)
     start_time  = Column(DateTime, nullable=False)
     end_time    = Column(DateTime, nullable=False)
-    created_at  = Column(DateTime, default=datetime.utcnow) 
-    updated_at  = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow) 
+    created_at  = Column(DateTime, default=datetime.datetime.utcnow()) 
+    updated_at  = Column(DateTime, default=datetime.datetime.utcnow(), onupdate=datetime.datetime.utcnow()) 
     rsvps       = Column(String(36), ForeignKey('rsvps.id'), nullable=True) 

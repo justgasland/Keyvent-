@@ -12,8 +12,8 @@ class RSVP(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
     response = Column(String(20), nullable=False)  
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow())
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow(), onupdate=datetime.datetime.utcnow())
     __table_args__ = (UniqueConstraint('event_id', 'email'),)
 
    
