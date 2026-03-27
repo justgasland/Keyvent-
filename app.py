@@ -28,5 +28,8 @@ session = DBSession()
 
 # ROUTES SETUP
 from routes.keys import keysBlueprint
+from routes.events import events_bp
 
+
+app.register_blueprint(events_bp, url_prefix='/api/v1')
 app.register_blueprint(keysBlueprint, url_prefix='/api/v1')
