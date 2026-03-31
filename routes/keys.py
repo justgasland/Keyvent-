@@ -6,6 +6,7 @@ from models.api_key import APIKey
 
 
 keysBlueprint = Blueprint('keys', __name__)
+from utils.keygen import generate_api_key
 
 
 
@@ -40,7 +41,8 @@ def generate_api_key():
             errors.append({"field": "rate_limit", "message": "Rate limit must be a positive integer"})
         elif rate_limit > 10000:
                 errors.append({"field": "rate_limit", "message": "Rate limit cannot exceed 10000"})
-        generated_key = "KV_" + secrets.token_urlsafe(32)
+        
+        generated_key = generate_api_key()
 
         if errors:
             return jsonify({

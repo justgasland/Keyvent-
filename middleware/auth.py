@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import request, jsonify, g
+from flask import request, jsonify, g, make_response
 import datetime
 import uuid
 import logging
@@ -68,7 +68,17 @@ def require_api_key(f):
 
         g.api_key = api_key
 
-        return f(*args, **kwargs)
+        limit={
+            "rate_limit": api_key.rate_limit,
+            "rate_limit_remaining": api_key.rate_limit - api_key.request_this_hour,
+            "rate_limit_reset": (api_key.window_start + datetime.timedelta(hours=1) - datetime.datetime.utcnow()).total_seconds()
+        }
+
+
+
+        result = f(*args, **kwargs)
+        response = make_response(result)
+        response.headers.update(limit)
     return decorated
 
 
