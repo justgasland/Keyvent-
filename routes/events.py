@@ -116,8 +116,8 @@ def create_event():
                             "title": new_event.title,
                             "description": new_event.description,
                             "location": new_event.location,
-                            "start_time": new_event.start_time.isoformat(),
-                            "end_time": new_event.end_time.isoformat(),
+                            "start_time": new_event.start_time,
+                            "end_time": new_event.end_time,
                             "created_at": new_event.created_at.isoformat(),
                             "updated_at": new_event.updated_at.isoformat()
                         },
